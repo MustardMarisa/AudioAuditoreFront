@@ -2,8 +2,8 @@ import React, { Component } from "react";
 
 import {
     Route,
-    NavLink,
-    HashRouter
+    Link,
+    BrowserRouter as Router
 } from "react-router-dom";
 
 //importamos el componente, deben comenzar con mayusculas
@@ -25,20 +25,13 @@ class MainWindow extends Component {
     render() {
         return (
             <div className="App">
-                {/*<NavBar />
-                <div className="container">
-                    <Register />
-                </div>
-                */}
-                <HashRouter>
+                <Router>
                     <div>
                         
                         <ul className="header">
-                            <li><NavLink exact to="/">Login</NavLink></li>
-                            <li><NavLink to="/stuff">Stuff</NavLink></li>
-                            <li><NavLink to="/contact">Contact</NavLink></li>
-                            {/*<li><NavLink to="/loginError">Error</NavLink></li>*/}
-                            {/*<li><NavLink to="/callback">Callback</NavLink></li>*/}
+                            <li><Link exact to="/">Login</Link></li>
+                            <li><Link to="/stuff">Stuff</Link></li>
+                            <li><Link to="/contact">Contact</Link></li>
                         </ul>
 
                         <h1>Bienvenido, {this.props.name}</h1>
@@ -56,8 +49,22 @@ class MainWindow extends Component {
                             {/*<Route path="/loginError" component={LoginError} />*/}
                             {/*<Route path="/callback" component={Callback} />*/}
                         </div>
+
+                        <div className="content">
+                            <Route exact path="/" render={(routeProps)=>(
+                                <Login {...routeProps} {...this.props} />
+                            )} />
+                            <Route path="/stuff" render={(routeProps)=>(
+                                this.props.auth.isAuthenticated() ? <Stuff {...routeProps} {...this.props} /> : <LoginError {...routeProps} {...this.props} />
+                            )} />
+                            <Route path="/contact" render={(routeProps)=>(
+                                this.props.auth.isAuthenticated() ? <Contact {...routeProps} {...this.props} /> : <LoginError {...routeProps} {...this.props} />
+                            )} />
+                            {/*<Route path="/loginError" component={LoginError} />*/}
+                            {/*<Route path="/callback" component={Callback} />*/}
+                        </div>
                     </div>
-                </HashRouter>
+                </Router>
             </div>
         );
     }
