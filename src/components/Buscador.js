@@ -1,8 +1,53 @@
 import React, { Component } from "react";
 import Lista from "./Lista";
-import { contenedorCancion, contenedorArtista, contenedorPlaylist } from "../functions/config";
+import {
+    contenedorCancion, contenedorArtista, contenedorPlaylist, queryCancion, queryArtista,
+    queryPlaylist, textoCancion, textoArtista, textoPlaylist
+} from "../functions/config";
 
 class Buscador extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            queryType: queryCancion,
+            textoType: textoCancion,
+        };
+    }
+
+    componentDidMount = () => {
+
+        this.cambiarQuery(this.state.queryType);
+    }
+
+    cambiarQuery = (type) => {
+        switch (type) {
+            case queryCancion:
+                this.setState({
+                    queryType: queryCancion,
+                    textoType: textoCancion,
+                });
+                break;
+            case queryArtista:
+                this.setState({
+                    queryType: queryArtista,
+                    textoType: textoArtista,
+                });
+                break;
+            case queryPlaylist:
+                this.setState({
+                    queryType: queryPlaylist,
+                    textoType: textoPlaylist,
+                });
+                break;
+            default:
+                this.setState({
+                    queryType: queryCancion,
+                    textoType: textoCancion,
+                });
+                break;
+        }
+    }
 
     mostrarCancion = () => {
         this.props.actualizarContenedorDerecho(contenedorCancion);
@@ -19,11 +64,25 @@ class Buscador extends Component {
     render = () => {
         return (
             <div>
-                <h1>Buscador</h1>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span class="selection">{this.state.textoType}</span><span class="caret"></span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <button className="dropdown-item" onClick={() => this.cambiarQuery(queryCancion)}>{textoCancion}</button>
+                        <button className="dropdown-item" onClick={() => this.cambiarQuery(queryArtista)}>{textoArtista}</button>
+                        <button className="dropdown-item" onClick={() => this.cambiarQuery(queryPlaylist)}>{textoPlaylist}</button>
+                    </div>
+                </div>
+
+                <input type="text" placeholder="¿Qué quieres buscar?..."></input>
+
+                <button className="btn btn-default">
+                    Buscar
+                </button>
+
                 <Lista />
-                <button type="button" class="btn btn-link" onClick={this.mostrarCancion}>Cancion</button>
-                <button type="button" class="btn btn-link" onClick={this.mostrarArtista}>Artista</button>
-                <button type="button" class="btn btn-link" onClick={this.mostrarPlaylist}>Playlist</button>
+
             </div>
         );
     }

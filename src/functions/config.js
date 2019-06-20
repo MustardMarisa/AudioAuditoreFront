@@ -12,4 +12,15 @@ export const scopes = [
 export const contenedorCancion = "contenedorCancion";
 export const contenedorArtista = "contenedorArtista";
 export const contenedorPlaylist = "contenedorPlaylist";
+
+export const queryCancion = "track";
+export const queryArtista = "artist";
+export const queryPlaylist = "playlist";
+export const queryAlbum  = "album";
+
+export const textoCancion = "Cancion";
+export const textoArtista = "Artista";
+export const textoPlaylist = "Playlist";
+export const textoAlbum  = "Album";
+
 export const listaTipoMiPlaylist = true;
