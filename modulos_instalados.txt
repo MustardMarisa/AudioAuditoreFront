@@ -22,9 +22,22 @@ npm install bootstrap jquery popper.js
 npm install sweetalert2 sweetalert2-react-content
 (https://github.com/sweetalert2/sweetalert2-react-content)
 
-6)npm install auth0-js
+*6)npm install auth0-js
 
-7)npm install jwt-decode
+*7)npm install jwt-decode
 
 
 8)npm install react-router
+
+*9)npm i simplex-noise
+
+*10)npm i three
+
+*11)npm i react-audio-spectrum
+
+*12)npm install classnames
+*13)npm i react-audio-visualizer
+
+*14)npm i react-load-script
+
+npm uninstall auth0-js jwt-decode simplex-noise three react-audio-spectrum classnames react-audio-visualizer react-load-script
