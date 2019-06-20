@@ -1,0 +1,113 @@
+import React from 'react';
+import {
+    Route,
+    Link,
+    BrowserRouter as Router
+} from "react-router-dom";
+
+import Buscador from "./Buscador";
+import CajaComentario from "./CajaComentario";
+import DisplayInfo from "./DisplayInfo";
+import Lista from "./Lista";
+import Reproductor from "./Reproductor";
+
+
+import { contenedorCancion, contenedorArtista, contenedorPlaylist, listaTipoMiPlaylist } from "../functions/config";
+
+//importamos el componente, deben comenzar con mayusculas
+
+class Dashboard extends React.Component {
+
+    constructor() {
+        super();
+        this.state = {
+            contenedorDerecho: null,
+        };
+    }
+
+    actualizarContenedorDerecho = (tipo) => {
+        this.setState({
+            contenedorDerecho: tipo,
+        });
+    }
+
+    contenedorCancion = () => {
+        return (
+            <div>
+                <DisplayInfo />
+                <Reproductor />
+                <CajaComentario />
+                <Lista />
+            </div>
+        );
+    }
+
+    contenedorArtista = () => {
+        return (
+            <div>
+                <DisplayInfo />
+                <CajaComentario />
+                <Lista />
+            </div>
+        );
+    }
+
+    contenedorPlaylist = () => {
+        return (
+            <div>
+                <DisplayInfo />
+                <CajaComentario />
+                <Lista />
+            </div>
+        );
+    }
+
+    render = () => {
+        return (
+            <div>
+                <h1>Dashboard</h1>
+
+                <Router>
+
+                    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <div className="navbar-nav">
+                                <Link to="/buscador" className="nav-item nav-link">Buscar</Link>
+                                <Link to="/miPlaylists" className="nav-item nav-link">Mis Playlists</Link>
+                            </div>
+                        </div>
+                    </nav>
+
+                    <div className="container">
+                        <div className="row">
+
+                            {/*Contenedor izquierdo*/}
+                            <div className="col">
+                            <Route path="/buscador" render={(routeProps) => <Buscador {...routeProps} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />} />
+                                <Route path="/miPlaylists" render={(routeProps) => <Lista {...routeProps} tipo={listaTipoMiPlaylist} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />} />
+                            </div>
+
+
+                            {/*Contenedor derecho*/}
+                            <div className="col">
+                                {this.state.contenedorDerecho === contenedorCancion &&
+                                    this.contenedorCancion()
+                                }
+
+                                {this.state.contenedorDerecho === contenedorArtista &&
+                                    this.contenedorArtista()
+                                }
+
+                                {this.state.contenedorDerecho === contenedorPlaylist &&
+                                    this.contenedorPlaylist()
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </Router>
+
+            </div>
+        );
+    }
+}
+export default Dashboard;

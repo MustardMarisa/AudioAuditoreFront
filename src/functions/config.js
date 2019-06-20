@@ -8,3 +8,8 @@ export const scopes = [
     "user-read-currently-playing",
     "user-read-playback-state",
 ];
+
+export const contenedorCancion = "contenedorCancion";
+export const contenedorArtista = "contenedorArtista";
+export const contenedorPlaylist = "contenedorPlaylist";
+export const listaTipoMiPlaylist = true;
