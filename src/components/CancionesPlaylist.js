@@ -1,40 +1,55 @@
 import React, { Component } from "react";
-import { contenedorCancion, contenedorArtista } from "../functions/config";
+import axios from "axios";
 
 class CancionesPlaylist extends Component {
 
-    mostrarCancion = () => {
-        this.props.actualizarContenedorDerecho(contenedorCancion);
+    constructor() {
+        super();
+        this.state = {
+            tracks: [],
+        };
     }
 
-    mostrarArtista = () => {
-        this.props.actualizarContenedorDerecho(contenedorArtista);
+    componentDidMount() {
+        axios({
+            method: 'get',
+            url: `https://api.spotify.com/v1/playlists/${this.props.objeto.id}/tracks`,
+            headers: {
+                'Authorization': 'Bearer ' + this.props.authToken,
+            }
+        })
+            .then(res => {
+                console.log(res);
+                this.setState({
+                    tracks: res.data.items,
+                });
+            })
     }
+
 
     render = () => {
         return (
-
-            <div className="container">
-                <div className="card">
-                    <div className="row no-gutters">
-                        <div className="col-md-12">
-                            <div className="card-body">
-                            <li className="list-group-item">
-                                <p>Cancion: <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>Cancion</button></p>
-                                <p>Artista: <button type="button" className="btn btn-link" onClick={this.mostrarArtista}>Artista</button></p>
-                            </li>
-                            <li className="list-group-item">
-                                <p>Cancion: <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>Cancion</button></p>
-                                <p>Artista: <button type="button" className="btn btn-link" onClick={this.mostrarArtista}>Artista</button></p>
-                            </li>
-                            <li className="list-group-item">
-                                <p>Cancion: <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>Cancion</button></p>
-                                <p>Artista: <button type="button" className="btn btn-link" onClick={this.mostrarArtista}>Artista</button></p>
-                            </li>
+            <div className="scrollList">
+                <ul className="list-group ">
+                    {
+                        this.state.tracks.map(track => (
+                            <div id={track.track.id}>
+                                <div className="row no-gutters demotext">
+                                    <div className="col-md-5 d-inline-flex">
+                                        <img src={track.track.album.images[0].url} className="card-img" alt="" />
+                                    </div>
+                                    <div className="col-md-7">
+                                        <div className="card-body">
+                                            <p>Cancion: {track.track.name}</p>
+                                            <p>Artista: {track.track.artists[0].name}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br></br>
                             </div>
-                        </div>
-                    </div>
-                </div>
+                        ))
+                    }
+                </ul>
             </div>
         );
     }

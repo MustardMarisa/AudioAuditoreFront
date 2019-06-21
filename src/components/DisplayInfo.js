@@ -4,18 +4,39 @@ import {
     contenedorCancion, contenedorArtista, contenedorPlaylist,
     queryCancion, queryArtista, queryPlaylist
 } from "../functions/config";
+import axios from "axios";
 
 class DisplayInfo extends Component {
 
-    mostrarCancion = () => {
+    obtenerArtista = (id) => {
+        axios({
+            method: 'get',
+            url: `https://api.spotify.com/v1/artists/${id}`,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json ',
+                'Authorization': 'Bearer ' + this.props.authToken,
+            }
+        })
+            .then(res => {
+                console.log(res);
+                return res;
+            })
+    }
+
+
+    mostrarCancion = (objeto) => {
+        this.props.cargarObjeto(objeto);
         this.props.actualizarContenedorDerecho(contenedorCancion);
     }
 
-    mostrarArtista = () => {
+    mostrarArtista = (objeto) => {
+        this.props.cargarObjeto(objeto);
         this.props.actualizarContenedorDerecho(contenedorArtista);
     }
 
-    mostrarPlaylist = () => {
+    mostrarPlaylist = (objeto) => {
+        this.props.cargarObjeto(objeto);
         this.props.actualizarContenedorDerecho(contenedorPlaylist);
     }
 
@@ -27,8 +48,7 @@ class DisplayInfo extends Component {
                 </div>
                 <div className="col-md-7">
                     <div className="card-body">
-                        <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>{this.props.objeto.name}</button>
-                        <button type="button" className="btn btn-link" onClick={this.mostrarArtista}>{this.props.objeto.artists[0].name}</button>
+                        <button type="button" className="btn btn-link" onClick={() => this.mostrarCancion(this.props.objeto)}>{this.props.objeto.name}</button>
                         <Ratings
                             rating={2}
                             widgetRatedColors="purple"
@@ -51,6 +71,7 @@ class DisplayInfo extends Component {
         return (
             <div className="row no-gutters">
                 <div className="col-md-5 d-inline-flex">
+                    {console.log(this.props.objeto)}
                     {this.props.objeto.images.length !== 0 &&
                         <img src={this.props.objeto.images[0].url} className="card-img" alt="" />}
                     {this.props.objeto.images.length === 0 &&
@@ -58,7 +79,7 @@ class DisplayInfo extends Component {
                 </div>
                 <div className="col-md-7">
                     <div className="card-body">
-                        <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>{this.props.objeto.name}</button>
+                        <button type="button" className="btn btn-link" onClick={() => this.mostrarArtista(this.props.objeto)}>{this.props.objeto.name}</button>
                         <Ratings
                             rating={2}
                             widgetRatedColors="purple"
@@ -86,7 +107,7 @@ class DisplayInfo extends Component {
                 </div>
                 <div className="col-md-7">
                     <div className="card-body">
-                        <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>{this.props.objeto.name}</button>
+                        <button type="button" className="btn btn-link" onClick={() => this.mostrarPlaylist(this.props.objeto)}>{this.props.objeto.name}</button>
                         <Ratings
                             rating={2}
                             widgetRatedColors="purple"

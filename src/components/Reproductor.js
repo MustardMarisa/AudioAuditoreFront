@@ -8,7 +8,7 @@ class Reproductor extends Component {
     }
 
     componentDidMount() {
-        this.createVisualization()
+        this.createVisualization();
     }
 
     createVisualization() {
@@ -49,7 +49,7 @@ class Reproductor extends Component {
                         <audio
                             ref="audio"
                             controls={true}
-                            src={"https://p.scdn.co/mp3-preview/ce9c1c78df581b33a5d171f657ca2c5a1da6a979?cid=774b29d4f13844c495f206cafdad9c86"}
+                            src={this.props.objeto.preview_url}
                         >
                         </audio>
                     </div>

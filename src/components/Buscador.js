@@ -190,13 +190,13 @@ class Buscador extends Component {
                 <br></br>
 
                 {this.state.canciones &&
-                    <Lista queryType={this.state.queryType} objetos={this.state.canciones} tipo={listaTipoList} contenidoLista={contenidoListaDisplay} actualizarContenedorDerecho={this.props.actualizarContenedorDerecho} />
+                    <Lista authToken={this.props.authToken} queryType={this.state.queryType} objetos={this.state.canciones} tipo={listaTipoList} contenidoLista={contenidoListaDisplay} actualizarContenedorDerecho={this.props.actualizarContenedorDerecho} cargarObjeto={this.props.cargarObjeto}/>
                 }
                 {this.state.artistas &&
-                    <Lista queryType={this.state.queryType} objetos={this.state.artistas} tipo={listaTipoList} contenidoLista={contenidoListaDisplay} actualizarContenedorDerecho={this.props.actualizarContenedorDerecho} />
+                    <Lista authToken={this.props.authToken} queryType={this.state.queryType} objetos={this.state.artistas} tipo={listaTipoList} contenidoLista={contenidoListaDisplay} actualizarContenedorDerecho={this.props.actualizarContenedorDerecho} cargarObjeto={this.props.cargarObjeto}/>
                 }
                 {this.state.playlists &&
-                    <Lista queryType={this.state.queryType} objetos={this.state.playlists} tipo={listaTipoList} contenidoLista={contenidoListaDisplay} actualizarContenedorDerecho={this.props.actualizarContenedorDerecho} />
+                    <Lista authToken={this.props.authToken} queryType={this.state.queryType} objetos={this.state.playlists} tipo={listaTipoList} contenidoLista={contenidoListaDisplay} actualizarContenedorDerecho={this.props.actualizarContenedorDerecho} cargarObjeto={this.props.cargarObjeto}/>
                 }
                 
             </div>

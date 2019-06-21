@@ -13,7 +13,8 @@ import Lista from "./Lista";
 import Reproductor from "./Reproductor";
 
 
-import { contenedorCancion, contenedorArtista, contenedorPlaylist, listaTipoCarousel, listaTipoList, contenidoListaComentarios } from "../functions/config";
+import { contenedorCancion, contenedorArtista, contenedorPlaylist, listaTipoCarousel, listaTipoList,
+        queryCancion, queryArtista, queryPlaylist, contenidoListaComentarios } from "../functions/config";
 
 //importamos el componente, deben comenzar con mayusculas
 
@@ -23,6 +24,7 @@ class Dashboard extends React.Component {
         super();
         this.state = {
             contenedorDerecho: null,
+            objeto: null,
         };
     }
 
@@ -32,42 +34,48 @@ class Dashboard extends React.Component {
         });
     }
 
-    contenedorCancion = () => {
+    cargarObjeto = (objeto) => {
+        this.setState({
+            objeto: objeto,
+        });
+    }
+
+    contenedorCancion = (objeto) => {
         return (
             <div>
-                <DisplayInfo actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)}/>
+                <DisplayInfo authToken={this.props.authToken} objeto={objeto} queryType={queryCancion} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} cargarObjeto={this.cargarObjeto.bind(this)}/>
                 <br></br>
-                <Reproductor />
+                <Reproductor objeto={objeto}/>
                 <br></br>
                 <CajaComentario />
                 <br></br>
-                <Lista tipo={listaTipoList} contenidoLista={contenidoListaComentarios} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
+                <Lista authToken={this.props.authToken} tipo={listaTipoList} contenidoLista={contenidoListaComentarios} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
             </div>
         );
     }
 
-    contenedorArtista = () => {
+    contenedorArtista = (objeto) => {
         return (
             <div>
-                <DisplayInfo actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)}/>
+                <DisplayInfo authToken={this.props.authToken} objeto={objeto} queryType={queryArtista} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} cargarObjeto={this.cargarObjeto.bind(this)}/>
                 <br></br>
                 <CajaComentario />
                 <br></br>
-                <Lista tipo={listaTipoList} contenidoLista={contenidoListaComentarios} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
+                <Lista authToken={this.props.authToken} tipo={listaTipoList} contenidoLista={contenidoListaComentarios} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
             </div>
         );
     }
 
-    contenedorPlaylist = () => {
+    contenedorPlaylist = (objeto) => {
         return (
             <div>
-                <DisplayInfo actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)}/>
+                <DisplayInfo authToken={this.props.authToken} objeto={objeto} queryType={queryPlaylist} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} cargarObjeto={this.cargarObjeto.bind(this)}/>
                 <br></br>
-                <CancionesPlaylist actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
+                <CancionesPlaylist authToken={this.props.authToken} objeto={objeto}  />
                 <br></br>
-                <CajaComentario />
+                <CajaComentario/>
                 <br></br>
-                <Lista tipo={listaTipoList} contenidoLista={contenidoListaComentarios} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
+                <Lista authToken={this.props.authToken} tipo={listaTipoList} contenidoLista={contenidoListaComentarios} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
             </div>
         );
     }
@@ -101,23 +109,23 @@ class Dashboard extends React.Component {
                         <div className="row">
                             {/*Contenedor izquierdo*/}
                             <div className="col">
-                                <Route path="/buscador" render={(routeProps) => <Buscador {...routeProps} authToken={this.props.authToken} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />} />
-                                <Route path="/miPlaylists" render={(routeProps) => <Lista {...routeProps} tipo={listaTipoCarousel} authToken={this.props.authToken} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />} />
+                                <Route path="/buscador" render={(routeProps) => <Buscador {...routeProps} authToken={this.props.authToken} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} cargarObjeto={this.cargarObjeto.bind(this)}/>} />
+                                <Route path="/miPlaylists" render={(routeProps) => <Lista {...routeProps} tipo={listaTipoCarousel} authToken={this.props.authToken} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} cargarObjeto={this.cargarObjeto.bind(this)} />} />
                             </div>
 
 
                             {/*Contenedor derecho*/}
                             <div className="col">
                                 {this.state.contenedorDerecho === contenedorCancion &&
-                                    this.contenedorCancion()
+                                    this.contenedorCancion(this.state.objeto)
                                 }
 
                                 {this.state.contenedorDerecho === contenedorArtista &&
-                                    this.contenedorArtista()
+                                    this.contenedorArtista(this.state.objeto)
                                 }
 
                                 {this.state.contenedorDerecho === contenedorPlaylist &&
-                                    this.contenedorPlaylist()
+                                    this.contenedorPlaylist(this.state.objeto)
                                 }
                             </div>
                         </div>

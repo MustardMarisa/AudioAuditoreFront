@@ -34,15 +34,18 @@ class Lista extends Component {
         }
     }
 
-    mostrarCancion = () => {
+    mostrarCancion = (objeto) => {
+        this.props.cargarObjeto(objeto);
         this.props.actualizarContenedorDerecho(contenedorCancion);
     }
 
-    mostrarArtista = () => {
+    mostrarArtista = (objeto) => {
+        this.props.cargarObjeto(objeto);
         this.props.actualizarContenedorDerecho(contenedorArtista);
     }
 
-    mostrarPlaylist = () => {
+    mostrarPlaylist = (objeto) => {
+        this.props.cargarObjeto(objeto);
         this.props.actualizarContenedorDerecho(contenedorPlaylist);
     }
 
@@ -51,10 +54,9 @@ class Lista extends Component {
             <div className="scrollList">
                 <ul className="list-group ">
                     {
-
                         this.props.objetos.map(objeto => (
                             <div key={objeto.id}>
-                                <DisplayInfo key={objeto.id} objeto={objeto} queryType={this.props.queryType} actualizarContenedorDerecho={this.props.actualizarContenedorDerecho} />
+                                <DisplayInfo authToken={this.props.authToken} key={objeto.id} objeto={objeto} queryType={this.props.queryType} actualizarContenedorDerecho={this.props.actualizarContenedorDerecho} cargarObjeto={this.props.cargarObjeto} />
                                 <br></br>
                             </div>
                         ))
@@ -87,7 +89,7 @@ class Lista extends Component {
                     <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
                         <div className="carousel-inner">
                             {this.state.playlistsUser.map((playlist, index) => (
-                                <div key={playlist.id} className={index===0 ? "carousel-item active" : "carousel-item"}  onClick={this.mostrarPlaylist}>
+                                <div key={playlist.id} className={index===0 ? "carousel-item active" : "carousel-item"}  onClick={() => this.mostrarPlaylist(playlist)}>
                                     <div className="hero-image">
                                         {playlist.images.length !== 0 &&
                                             <img src={playlist.images[0].url} className="d-block w-100" alt="" />}
