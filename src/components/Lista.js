@@ -24,7 +24,7 @@ class Lista extends Component {
                     {
                         
                         this.props.objetos.map(objeto => (
-                            <div>
+                            <div key={objeto.id}>
                             <DisplayInfo key={objeto.id} objeto={objeto} queryType={this.props.queryType} actualizarContenedorDerecho={this.props.actualizarContenedorDerecho} />
                             <br></br>
                             </div>
