@@ -44,7 +44,6 @@ class Reproductor extends Component {
     render() {
         return (
             <div>
-                <h1>Reproductor</h1>
                 <div id="mp3_player">
                     <div id="audio_box">
                         <audio

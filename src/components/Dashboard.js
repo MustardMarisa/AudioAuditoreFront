@@ -7,12 +7,13 @@ import {
 
 import Buscador from "./Buscador";
 import CajaComentario from "./CajaComentario";
+import CancionesPlaylist from "./CancionesPlaylist";
 import DisplayInfo from "./DisplayInfo";
 import Lista from "./Lista";
 import Reproductor from "./Reproductor";
 
 
-import { contenedorCancion, contenedorArtista, contenedorPlaylist, listaTipoMiPlaylist } from "../functions/config";
+import { contenedorCancion, contenedorArtista, contenedorPlaylist, listaTipoCarousel, listaTipoList } from "../functions/config";
 
 //importamos el componente, deben comenzar con mayusculas
 
@@ -37,7 +38,7 @@ class Dashboard extends React.Component {
                 <DisplayInfo />
                 <Reproductor />
                 <CajaComentario />
-                <Lista />
+                <Lista  tipo={listaTipoList} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)}/>
             </div>
         );
     }
@@ -47,7 +48,7 @@ class Dashboard extends React.Component {
             <div>
                 <DisplayInfo />
                 <CajaComentario />
-                <Lista />
+                <Lista tipo={listaTipoList} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)}/>
             </div>
         );
     }
@@ -56,8 +57,9 @@ class Dashboard extends React.Component {
         return (
             <div>
                 <DisplayInfo />
+                <CancionesPlaylist actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)}/>
                 <CajaComentario />
-                <Lista />
+                <Lista tipo={listaTipoList} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)}/>
             </div>
         );
     }
@@ -82,7 +84,7 @@ class Dashboard extends React.Component {
                             {/*Contenedor izquierdo*/}
                             <div className="col">
                             <Route path="/buscador" render={(routeProps) => <Buscador {...routeProps} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />} />
-                                <Route path="/miPlaylists" render={(routeProps) => <Lista {...routeProps} tipo={listaTipoMiPlaylist} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />} />
+                                <Route path="/miPlaylists" render={(routeProps) => <Lista {...routeProps} tipo={listaTipoCarousel} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />} />
                             </div>
 
 

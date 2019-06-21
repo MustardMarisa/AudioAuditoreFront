@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Lista from "./Lista";
 import {
     contenedorCancion, contenedorArtista, contenedorPlaylist, queryCancion, queryArtista,
-    queryPlaylist, textoCancion, textoArtista, textoPlaylist
+    queryPlaylist, textoCancion, textoArtista, textoPlaylist, listaTipoList
 } from "../functions/config";
 
 class Buscador extends Component {
@@ -81,7 +81,7 @@ class Buscador extends Component {
                     Buscar
                 </button>
 
-                <Lista />
+                <Lista tipo={listaTipoList} actualizarContenedorDerecho={this.props.actualizarContenedorDerecho}/>
 
             </div>
         );

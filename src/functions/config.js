@@ -23,4 +23,5 @@ export const textoArtista = "Artista";
 export const textoPlaylist = "Playlist";
 export const textoAlbum  = "Album";
 
-export const listaTipoMiPlaylist = true;
+export const listaTipoCarousel = "listaTipoCarousel";
+export const listaTipoList = "listaTipoList";
