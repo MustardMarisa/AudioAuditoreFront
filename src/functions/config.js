@@ -30,4 +30,5 @@ export const contenidoListaDisplay = "contenidoListaDisplay";
 export const contenidoListaComentarios = "contenidoListaComentarios";
 
 export const urlBack = "contenidoListaComentarios";
-export const urlSpotifySearch = "https://api.spotify.com/v1/search";
+export const urlSpotifySearch = "https://api.spotify.com/v1/search"
+export const urlBackEnd = "http://localhost:3777/api/comentarios/";

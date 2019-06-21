@@ -19,7 +19,6 @@ class DisplayInfo extends Component {
             }
         })
             .then(res => {
-                console.log(res);
                 return res;
             })
     }
@@ -35,7 +34,7 @@ class DisplayInfo extends Component {
         this.props.actualizarContenedorDerecho(contenedorArtista);
     }
 
-    mostrarPlaylist = (objeto) => {
+    mostrarPlaylist = (objeto) => {    
         this.props.cargarObjeto(objeto);
         this.props.actualizarContenedorDerecho(contenedorPlaylist);
     }

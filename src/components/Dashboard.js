@@ -47,9 +47,9 @@ class Dashboard extends React.Component {
                 <br></br>
                 <Reproductor objeto={objeto}/>
                 <br></br>
-                <CajaComentario />
+                <CajaComentario idSpotify={objeto.id} user_display_name={this.props.user_display_name} user_spotify_id={this.props.user_spotify_id}/>
                 <br></br>
-                <Lista authToken={this.props.authToken} tipo={listaTipoList} contenidoLista={contenidoListaComentarios} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
+                <Lista idSpotify={objeto.id} authToken={this.props.authToken} tipo={listaTipoList} contenidoLista={contenidoListaComentarios} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
             </div>
         );
     }
@@ -59,9 +59,9 @@ class Dashboard extends React.Component {
             <div>
                 <DisplayInfo authToken={this.props.authToken} objeto={objeto} queryType={queryArtista} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} cargarObjeto={this.cargarObjeto.bind(this)}/>
                 <br></br>
-                <CajaComentario />
+                <CajaComentario idSpotify={objeto.id} user_display_name={this.props.user_display_name} user_spotify_id={this.props.user_spotify_id}/>
                 <br></br>
-                <Lista authToken={this.props.authToken} tipo={listaTipoList} contenidoLista={contenidoListaComentarios} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
+                <Lista idSpotify={objeto.id} authToken={this.props.authToken} tipo={listaTipoList} contenidoLista={contenidoListaComentarios} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
             </div>
         );
     }
@@ -87,7 +87,7 @@ class Dashboard extends React.Component {
 
                     <div className="container">
                         <nav className="row navbar navbar-expand-lg navbar-dark bg-dark">
-                            <p className="navbar-brand" >¡Hola Carlos!<img src="https://profile-images.scdn.co/images/userprofile/default/9f903f2e25bdafdba25bb0482b305ff8240b6f07" width="50" height="50" alt="" className="rounded-circle" /></p>
+                            <p className="navbar-brand" >¡Hola {this.props.user_display_name}!<img src="https://profile-images.scdn.co/images/userprofile/default/9f903f2e25bdafdba25bb0482b305ff8240b6f07" width="50" height="50" alt="" className="rounded-circle" /></p>
                             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                 <span className="navbar-toggler-icon"></span>
                             </button>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { authEndpoint, clientId, redirectUri, scopes } from "../functions/config";
 import hash from "../functions/hash";
-
+import axios from "axios";
 import logo from "../auditore_logo.png";
 
 class Home extends Component {
@@ -11,7 +11,18 @@ class Home extends Component {
         let _token = hash.access_token;
         if (_token) {
             // Set token
-            this.props.actualizarAuthToken(_token);
+            axios({
+                method: 'get',
+                url: `https://api.spotify.com/v1/me`,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json ',
+                    'Authorization': 'Bearer ' + _token,
+                }
+            })
+            .then(res => {
+                this.props.actualizarUsuarioActivo(_token,res.data.display_name,res.data.id,res.data.uri);
+            })            
         }
     }
 

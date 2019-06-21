@@ -14,7 +14,6 @@ class Lista extends Component {
     }
 
     componentDidMount() {
-
         //obtenemos las playlist del usuario activo
         if (this.props.tipo === listaTipoCarousel) {
             axios({

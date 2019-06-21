@@ -10,13 +10,18 @@ class MainWindow extends Component {
         super();
         this.state = {
             authToken: null,
-            userName: 'Auditor'
+            display_name: null,
+            spotify_id: null,
+            spotify_uri: null,
         };
     }
 
-    actualizarAuthToken = (token) => {
+    actualizarUsuarioActivo = (token,display_name,spotify_id,spotify_uri) => {
         this.setState({
             authToken: token,
+            user_display_name: display_name,
+            user_spotify_id: spotify_id,
+            spotify_uri: spotify_uri,
         });
     }
 
@@ -25,11 +30,11 @@ class MainWindow extends Component {
             <div className="App container-fluid">
 
                 {!this.state.authToken &&
-                    <Home actualizarAuthToken={this.actualizarAuthToken.bind(this)}/>
+                    <Home actualizarUsuarioActivo={this.actualizarUsuarioActivo.bind(this)}/>
                 }                
 
                 {this.state.authToken &&
-                    <Dashboard authToken={this.state.authToken}/>
+                    <Dashboard authToken={this.state.authToken} user_display_name={this.state.user_display_name} user_spotify_id={this.state.user_spotify_id}/>
                 }  
 
             </div>
