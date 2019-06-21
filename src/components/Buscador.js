@@ -36,10 +36,10 @@ class Buscador extends Component {
                 this.buscarArtista();
                 break;
             case queryPlaylist:
-
+                this.buscarPlaylist();
                 break;
             default:
-                console.log('error de query de search, ningun tipo haceptado');
+                console.log('error de query de search, ningun tipo aceptado');
                 break;
         }
     }
@@ -85,7 +85,7 @@ class Buscador extends Component {
     buscarPlaylist = () => {
         axios({
             method: 'get',
-            url: `https://api.spotify.com/v1/search?q=${this.state.query}&type=${queryCancion}&market=US`,
+            url: `https://api.spotify.com/v1/search?q=${this.state.query}&type=${queryPlaylist}`,
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json ',
@@ -94,11 +94,10 @@ class Buscador extends Component {
         })
             .then(res => {
                 this.setState({
-                    canciones: res.data.tracks.items,
+                    canciones: null,
                     artistas: null,
-                    playlists: null,
+                    playlists: res.data.playlists.items,
                 });
-                console.log(res.data.tracks.items);
             })
     }
 

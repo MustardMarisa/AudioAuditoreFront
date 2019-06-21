@@ -2,8 +2,37 @@ import React, { Component } from "react";
 import { contenedorCancion, contenedorArtista, contenedorPlaylist, listaTipoCarousel, listaTipoList, contenidoListaDisplay, contenidoListaComentarios } from "../functions/config";
 import DisplayInfo from "./DisplayInfo";
 import Comentario from "./Comentario";
+import axios from "axios";
 
 class Lista extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            playlistsUser: null,
+        };
+    }
+
+    componentDidMount() {
+
+        //obtenemos las playlist del usuario activo
+        if (this.props.tipo === listaTipoCarousel) {
+            axios({
+                method: 'get',
+                url: `https://api.spotify.com/v1/me/playlists`,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json ',
+                    'Authorization': 'Bearer ' + this.props.authToken,
+                }
+            })
+                .then(res => {
+                    this.setState({
+                        playlistsUser: res.data.items,
+                    });
+                })
+        }
+    }
 
     mostrarCancion = () => {
         this.props.actualizarContenedorDerecho(contenedorCancion);
@@ -22,11 +51,11 @@ class Lista extends Component {
             <div className="scrollList">
                 <ul className="list-group ">
                     {
-                        
+
                         this.props.objetos.map(objeto => (
                             <div key={objeto.id}>
-                            <DisplayInfo key={objeto.id} objeto={objeto} queryType={this.props.queryType} actualizarContenedorDerecho={this.props.actualizarContenedorDerecho} />
-                            <br></br>
+                                <DisplayInfo key={objeto.id} objeto={objeto} queryType={this.props.queryType} actualizarContenedorDerecho={this.props.actualizarContenedorDerecho} />
+                                <br></br>
                             </div>
                         ))
                     }
@@ -54,36 +83,23 @@ class Lista extends Component {
                     </div>
                 }
 
-                {(this.props.tipo === listaTipoCarousel) &&
+                {(this.state.playlistsUser && this.props.tipo === listaTipoCarousel) &&
                     <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
                         <div className="carousel-inner">
-
-                            <div className="carousel-item active" onClick={this.mostrarPlaylist}>
-                                <div className="hero-image">
-                                    <img className="d-block w-100" src="https://i.scdn.co/image/ea4996e789ba320b510225702129af9909993c48" alt="" />
+                            {this.state.playlistsUser.map((playlist, index) => (
+                                <div key={playlist.id} className={index===0 ? "carousel-item active" : "carousel-item"}  onClick={this.mostrarPlaylist}>
+                                    <div className="hero-image">
+                                        {playlist.images.length !== 0 &&
+                                            <img src={playlist.images[0].url} className="d-block w-100" alt="" />}
+                                        {playlist.images.length === 0 &&
+                                            <img src='http://www.fitnessreal.es/wp-content/uploads/2014/05/prohibited-98614_640.png' className="d-block w-100" alt="" />}
+                                    </div>
+                                    <div className="carousel-caption d-none d-md-block">
+                                        <h3 className="morado font-weight-bold">{playlist.name}</h3>
+                                    </div>
                                 </div>
-                                <div className="carousel-caption d-none d-md-block">
-                                    <h3 className="morado font-weight-bold">Lovesick</h3>
-                                </div>
-                            </div>
-
-                            <div className="carousel-item" onClick={this.mostrarPlaylist}>
-                                <div className="hero-image">
-                                    <img className="d-block w-100" src="https://i.scdn.co/image/a921902562e5ebd1488143a3929f2a11094db775" alt="" />
-                                </div>
-                                <div className="carousel-caption d-none d-md-block">
-                                    <h3 className="morado font-weight-bold">Lovesick</h3>
-                                </div>
-                            </div>
-
-                            <div className="carousel-item" onClick={this.mostrarPlaylist}>
-                                <div className="hero-image">
-                                    <img className="d-block w-100" src="https://i.scdn.co/image/7859070b48ee27636ef827bb42da1d5245a6dc77" alt="" />
-                                </div>
-                                <div className="carousel-caption d-none d-md-block">
-                                    <h3 className="morado font-weight-bold">Lovesick</h3>
-                                </div>
-                            </div>
+                            ))
+                            }
 
                         </div>
                         <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">

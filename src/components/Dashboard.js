@@ -102,7 +102,7 @@ class Dashboard extends React.Component {
                             {/*Contenedor izquierdo*/}
                             <div className="col">
                                 <Route path="/buscador" render={(routeProps) => <Buscador {...routeProps} authToken={this.props.authToken} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />} />
-                                <Route path="/miPlaylists" render={(routeProps) => <Lista {...routeProps} tipo={listaTipoCarousel} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />} />
+                                <Route path="/miPlaylists" render={(routeProps) => <Lista {...routeProps} tipo={listaTipoCarousel} authToken={this.props.authToken} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />} />
                             </div>
 
 
