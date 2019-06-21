@@ -38,7 +38,7 @@ class Dashboard extends React.Component {
                 <DisplayInfo />
                 <Reproductor />
                 <CajaComentario />
-                <Lista  tipo={listaTipoList} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)}/>
+                <Lista tipo={listaTipoList} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
             </div>
         );
     }
@@ -48,7 +48,7 @@ class Dashboard extends React.Component {
             <div>
                 <DisplayInfo />
                 <CajaComentario />
-                <Lista tipo={listaTipoList} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)}/>
+                <Lista tipo={listaTipoList} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
             </div>
         );
     }
@@ -57,9 +57,9 @@ class Dashboard extends React.Component {
         return (
             <div>
                 <DisplayInfo />
-                <CancionesPlaylist actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)}/>
+                <CancionesPlaylist actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
                 <CajaComentario />
-                <Lista tipo={listaTipoList} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)}/>
+                <Lista tipo={listaTipoList} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
             </div>
         );
     }
@@ -71,9 +71,13 @@ class Dashboard extends React.Component {
 
                     <nav className="navbar navbar-expand-lg navbar-light bg-light">
                         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-                            <div className="navbar-nav">
+                            <div className="nab navbar-nav">
                                 <Link to="/buscador" className="nav-item nav-link">Buscar</Link>
                                 <Link to="/miPlaylists" className="nav-item nav-link">Mis Playlists</Link>
+                            </div>
+
+                            <div className="nav navbar-nav">
+                                <Link to="/miPlaylists" className="nav-item nav-link">Logout</Link>
                             </div>
                         </div>
                     </nav>
@@ -83,7 +87,7 @@ class Dashboard extends React.Component {
 
                             {/*Contenedor izquierdo*/}
                             <div className="col">
-                            <Route path="/buscador" render={(routeProps) => <Buscador {...routeProps} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />} />
+                                <Route path="/buscador" render={(routeProps) => <Buscador {...routeProps} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />} />
                                 <Route path="/miPlaylists" render={(routeProps) => <Lista {...routeProps} tipo={listaTipoCarousel} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />} />
                             </div>
 
