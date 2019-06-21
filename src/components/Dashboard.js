@@ -13,7 +13,7 @@ import Lista from "./Lista";
 import Reproductor from "./Reproductor";
 
 
-import { contenedorCancion, contenedorArtista, contenedorPlaylist, listaTipoCarousel, listaTipoList } from "../functions/config";
+import { contenedorCancion, contenedorArtista, contenedorPlaylist, listaTipoCarousel, listaTipoList, contenidoListaComentarios } from "../functions/config";
 
 //importamos el componente, deben comenzar con mayusculas
 
@@ -35,10 +35,13 @@ class Dashboard extends React.Component {
     contenedorCancion = () => {
         return (
             <div>
-                <DisplayInfo />
+                <DisplayInfo actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)}/>
+                <br></br>
                 <Reproductor />
+                <br></br>
                 <CajaComentario />
-                <Lista tipo={listaTipoList} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
+                <br></br>
+                <Lista tipo={listaTipoList} contenidoLista={contenidoListaComentarios} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
             </div>
         );
     }
@@ -46,9 +49,11 @@ class Dashboard extends React.Component {
     contenedorArtista = () => {
         return (
             <div>
-                <DisplayInfo />
+                <DisplayInfo actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)}/>
+                <br></br>
                 <CajaComentario />
-                <Lista tipo={listaTipoList} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
+                <br></br>
+                <Lista tipo={listaTipoList} contenidoLista={contenidoListaComentarios} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
             </div>
         );
     }
@@ -56,10 +61,13 @@ class Dashboard extends React.Component {
     contenedorPlaylist = () => {
         return (
             <div>
-                <DisplayInfo />
+                <DisplayInfo actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)}/>
+                <br></br>
                 <CancionesPlaylist actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
+                <br></br>
                 <CajaComentario />
-                <Lista tipo={listaTipoList} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
+                <br></br>
+                <Lista tipo={listaTipoList} contenidoLista={contenidoListaComentarios} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />
             </div>
         );
     }
@@ -70,24 +78,27 @@ class Dashboard extends React.Component {
                 <Router>
 
                     <div className="container">
-                        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                            <div className="navbar-collapse collapse" id="navbarNavAltMarkup">
+                        <nav className="row navbar navbar-expand-lg navbar-dark bg-dark">
+                            <p className="navbar-brand" >¡Hola Carlos!<img src="https://profile-images.scdn.co/images/userprofile/default/9f903f2e25bdafdba25bb0482b305ff8240b6f07" width="50" height="50" alt="" classNameName="rounded-circle" /></p>
+                            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span className="navbar-toggler-icon"></span>
+                            </button>
+                            <div className="collapse navbar-collapse" id="navbarNav">
                                 <div className="nav navbar-nav mr-auto">
                                     <Link to="/buscador" className="nav-item nav-link">Buscar</Link>
                                     <Link to="/miPlaylists" className="nav-item nav-link">Mis Playlists</Link>
                                 </div>
-                                <div className="nav navbar-nav">
-                                    <img src="https://profile-images.scdn.co/images/userprofile/default/9f903f2e25bdafdba25bb0482b305ff8240b6f07" height="50px" width="50px" className="rounded-circle nav-item" alt="auditor" />
-                                    <p className="nav-item nav-link">¡Bienvenido auditor!</p>
-                                    <Link to="/miPlaylists" className="nav-item nav-link">Logout</Link>
+                                <div className="nav navbar-nav"><Link to="/miPlaylists" className="nav-item nav-link">Logout</Link>
                                 </div>
                             </div>
                         </nav>
                     </div>
 
+                    <br></br>
+                    <br></br>
+
                     <div className="container">
                         <div className="row">
-
                             {/*Contenedor izquierdo*/}
                             <div className="col">
                                 <Route path="/buscador" render={(routeProps) => <Buscador {...routeProps} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />} />

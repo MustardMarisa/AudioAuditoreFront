@@ -43,9 +43,9 @@ class Reproductor extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container marine-background">
                 <div id="mp3_player">
-                    <div id="audio_box">
+                    <div id="audio_box" className="row d-inline-flex">
                         <audio
                             ref="audio"
                             controls={true}
@@ -54,6 +54,7 @@ class Reproductor extends Component {
                         </audio>
                     </div>
                     <canvas
+                        className="row d-inline-flex"
                         ref="analyzerCanvas"
                         id="analyzer"
                     >

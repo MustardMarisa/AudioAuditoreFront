@@ -22,7 +22,7 @@ class MainWindow extends Component {
 
     render = () => {
         return (
-            <div className="App">
+            <div className="App container-fluid">
 
                 {!this.state.authToken &&
                     <Home actualizarAuthToken={this.actualizarAuthToken.bind(this)}/>

@@ -13,60 +13,28 @@ class CancionesPlaylist extends Component {
 
     render = () => {
         return (
-            <div>
-                <h1>CancionesPlaylist</h1>
-                <div className="scrollList">
-                        <ul className="list-group ">
+
+            <div className="container">
+                <div className="card">
+                    <div className="row no-gutters">
+                        <div className="col-md-12">
+                            <div className="card-body">
                             <li className="list-group-item">
-                                <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>Cancion</button>
-                                <button type="button" className="btn btn-link" onClick={this.mostrarArtista}>Artista</button>
+                                <p>Cancion: <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>Cancion</button></p>
+                                <p>Artista: <button type="button" className="btn btn-link" onClick={this.mostrarArtista}>Artista</button></p>
                             </li>
                             <li className="list-group-item">
-                                <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>Cancion</button>
-                                <button type="button" className="btn btn-link" onClick={this.mostrarArtista}>Artista</button>
+                                <p>Cancion: <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>Cancion</button></p>
+                                <p>Artista: <button type="button" className="btn btn-link" onClick={this.mostrarArtista}>Artista</button></p>
                             </li>
                             <li className="list-group-item">
-                                <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>Cancion</button>
-                                <button type="button" className="btn btn-link" onClick={this.mostrarArtista}>Artista</button>
+                                <p>Cancion: <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>Cancion</button></p>
+                                <p>Artista: <button type="button" className="btn btn-link" onClick={this.mostrarArtista}>Artista</button></p>
                             </li>
-                            <li className="list-group-item">
-                                <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>Cancion</button>
-                                <button type="button" className="btn btn-link" onClick={this.mostrarArtista}>Artista</button>
-                            </li>
-                            <li className="list-group-item">
-                                <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>Cancion</button>
-                                <button type="button" className="btn btn-link" onClick={this.mostrarArtista}>Artista</button>
-                            </li>
-                            <li className="list-group-item">
-                                <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>Cancion</button>
-                                <button type="button" className="btn btn-link" onClick={this.mostrarArtista}>Artista</button>
-                            </li>
-                            <li className="list-group-item">
-                                <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>Cancion</button>
-                                <button type="button" className="btn btn-link" onClick={this.mostrarArtista}>Artista</button>
-                            </li>
-                            <li className="list-group-item">
-                                <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>Cancion</button>
-                                <button type="button" className="btn btn-link" onClick={this.mostrarArtista}>Artista</button>
-                            </li>
-                            <li className="list-group-item">
-                                <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>Cancion</button>
-                                <button type="button" className="btn btn-link" onClick={this.mostrarArtista}>Artista</button>
-                            </li>
-                            <li className="list-group-item">
-                                <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>Cancion</button>
-                                <button type="button" className="btn btn-link" onClick={this.mostrarArtista}>Artista</button>
-                            </li>
-                            <li className="list-group-item">
-                                <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>Cancion</button>
-                                <button type="button" className="btn btn-link" onClick={this.mostrarArtista}>Artista</button>
-                            </li>
-                            <li className="list-group-item">
-                                <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>Cancion</button>
-                                <button type="button" className="btn btn-link" onClick={this.mostrarArtista}>Artista</button>
-                            </li>
-                        </ul>                        
+                            </div>
+                        </div>
                     </div>
+                </div>
             </div>
         );
     }

@@ -25,3 +25,6 @@ export const textoAlbum  = "Album";
 
 export const listaTipoCarousel = "listaTipoCarousel";
 export const listaTipoList = "listaTipoList";
+
+export const contenidoListaDisplay = "contenidoListaDisplay";
+export const contenidoListaComentarios = "contenidoListaComentarios";
