@@ -28,3 +28,6 @@ export const listaTipoList = "listaTipoList";
 
 export const contenidoListaDisplay = "contenidoListaDisplay";
 export const contenidoListaComentarios = "contenidoListaComentarios";
+
+export const urlBack = "contenidoListaComentarios";
+export const urlSpotifySearch = "https://api.spotify.com/v1/search";

@@ -20,7 +20,7 @@ class Comentario extends Component {
                                     <Ratings.Widget widgetDimension="15px" />
                                     <Ratings.Widget widgetDimension="15px" />
                                 </Ratings>
-                                <img src="https://profile-images.scdn.co/images/userprofile/default/9f903f2e25bdafdba25bb0482b305ff8240b6f07" width="50" height="50" alt="" classNameName="rounded-circle" />
+                                <img src="https://profile-images.scdn.co/images/userprofile/default/9f903f2e25bdafdba25bb0482b305ff8240b6f07" width="50" height="50" alt="" className="rounded-circle" />
                                 <p>Carlos</p>
                             </div>
                         </div>

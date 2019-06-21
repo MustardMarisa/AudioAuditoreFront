@@ -79,7 +79,7 @@ class Dashboard extends React.Component {
 
                     <div className="container">
                         <nav className="row navbar navbar-expand-lg navbar-dark bg-dark">
-                            <p className="navbar-brand" >¡Hola Carlos!<img src="https://profile-images.scdn.co/images/userprofile/default/9f903f2e25bdafdba25bb0482b305ff8240b6f07" width="50" height="50" alt="" classNameName="rounded-circle" /></p>
+                            <p className="navbar-brand" >¡Hola Carlos!<img src="https://profile-images.scdn.co/images/userprofile/default/9f903f2e25bdafdba25bb0482b305ff8240b6f07" width="50" height="50" alt="" className="rounded-circle" /></p>
                             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                 <span className="navbar-toggler-icon"></span>
                             </button>
@@ -101,7 +101,7 @@ class Dashboard extends React.Component {
                         <div className="row">
                             {/*Contenedor izquierdo*/}
                             <div className="col">
-                                <Route path="/buscador" render={(routeProps) => <Buscador {...routeProps} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />} />
+                                <Route path="/buscador" render={(routeProps) => <Buscador {...routeProps} authToken={this.props.authToken} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />} />
                                 <Route path="/miPlaylists" render={(routeProps) => <Lista {...routeProps} tipo={listaTipoCarousel} actualizarContenedorDerecho={this.actualizarContenedorDerecho.bind(this)} />} />
                             </div>
 

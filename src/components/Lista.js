@@ -17,29 +17,39 @@ class Lista extends Component {
         this.props.actualizarContenedorDerecho(contenedorPlaylist);
     }
 
+    mostrarListaDisplays = () => {
+        return (
+            <div className="scrollList">
+                <ul className="list-group ">
+                    {
+                        
+                        this.props.objetos.map(objeto => (
+                            <div>
+                            <DisplayInfo key={objeto.id} objeto={objeto} queryType={this.props.queryType} actualizarContenedorDerecho={this.props.actualizarContenedorDerecho} />
+                            <br></br>
+                            </div>
+                        ))
+                    }
+                </ul>
+            </div>
+        );
+    }
+
     render = () => {
         return (
             <div className="container">
                 {(this.props.tipo === listaTipoList && this.props.contenidoLista === contenidoListaDisplay) &&
-                    <div className="scrollList">
-                        <ul className="list-group ">
-                                <DisplayInfo actualizarContenedorDerecho={this.props.actualizarContenedorDerecho}/>
-                                <br></br>
-                                <DisplayInfo actualizarContenedorDerecho={this.props.actualizarContenedorDerecho}/>
-                                <br></br>
-                                <DisplayInfo actualizarContenedorDerecho={this.props.actualizarContenedorDerecho}/>
-                        </ul>
-                    </div>
+                    this.mostrarListaDisplays()
                 }
 
                 {(this.props.tipo === listaTipoList && this.props.contenidoLista === contenidoListaComentarios) &&
                     <div className="scrollList">
                         <ul className="list-group ">
-                                <Comentario/>
-                                <br></br>
-                                <Comentario/>
-                                <br></br>
-                                <Comentario/>
+                            <Comentario />
+                            <br></br>
+                            <Comentario />
+                            <br></br>
+                            <Comentario />
                         </ul>
                     </div>
                 }
@@ -62,7 +72,7 @@ class Lista extends Component {
                                     <img className="d-block w-100" src="https://i.scdn.co/image/a921902562e5ebd1488143a3929f2a11094db775" alt="" />
                                 </div>
                                 <div className="carousel-caption d-none d-md-block">
-                                <h3 className="morado font-weight-bold">Lovesick</h3>
+                                    <h3 className="morado font-weight-bold">Lovesick</h3>
                                 </div>
                             </div>
 
@@ -71,7 +81,7 @@ class Lista extends Component {
                                     <img className="d-block w-100" src="https://i.scdn.co/image/7859070b48ee27636ef827bb42da1d5245a6dc77" alt="" />
                                 </div>
                                 <div className="carousel-caption d-none d-md-block">
-                                <h3 className="morado font-weight-bold">Lovesick</h3>
+                                    <h3 className="morado font-weight-bold">Lovesick</h3>
                                 </div>
                             </div>
 

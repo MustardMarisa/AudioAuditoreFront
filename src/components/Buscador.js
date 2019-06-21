@@ -4,6 +4,7 @@ import {
     contenedorCancion, contenedorArtista, contenedorPlaylist, queryCancion, queryArtista,
     queryPlaylist, textoCancion, textoArtista, textoPlaylist, listaTipoList, contenidoListaDisplay
 } from "../functions/config";
+import axios from "axios";
 
 class Buscador extends Component {
 
@@ -12,7 +13,55 @@ class Buscador extends Component {
         this.state = {
             queryType: queryCancion,
             textoType: textoCancion,
+            query: '',
+            canciones: [],
+            artistas: [],
+            playlists: [],
         };
+    }
+
+    handleChange = (e) =>{
+        const { name, value } = e.target;
+        this.setState({
+            [name]: value
+        });
+    }
+
+    realizarSearch = () => {
+        switch (this.state.queryType) {
+            case queryCancion:
+                this.buscarCanciones();
+                break;
+            case queryArtista:
+
+                break;
+            case queryPlaylist:
+
+                break;
+            default:
+                console.log('error de query de search, ningun tipo haceptado');
+                break;
+        }
+    }
+
+    buscarCanciones = () => {
+        axios({
+            method: 'get',
+            url: `https://api.spotify.com/v1/search?q=${this.state.query}&type=${queryCancion}&market=US`,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json ',
+                'Authorization': 'Bearer ' + this.props.authToken,
+            }
+        })
+            .then(res => {
+                this.setState({
+                    canciones: res.data.tracks.items,
+                    artistas: [],
+                    playlists: [],
+                });
+                console.log(res.data.tracks.items);
+            })
     }
 
     componentDidMount = () => {
@@ -67,7 +116,7 @@ class Buscador extends Component {
                 <div className="container">
                     <div className="row d-inline-flex">
                         <div className="col-sm">
-                            <input type="text" className="form-control" id="exampleInputEmail1" placeholder="¿Qué quieres buscar?..." />
+                            <input type="text" className="form-control" name="query" onChange={this.handleChange} value={this.state.query} placeholder="¿Qué quieres buscar?..." />
                         </div>
                     </div>
                     <div className="row d-inline-flex">
@@ -83,7 +132,7 @@ class Buscador extends Component {
                         </div>
 
                         <div className="col">
-                            <button className="btn btn-info">
+                            <button className="btn btn-info" onClick={this.realizarSearch}>
                                 Buscar
                             </button>
                         </div>
@@ -92,7 +141,16 @@ class Buscador extends Component {
 
                 <br></br>
 
-                <Lista tipo={listaTipoList} contenidoLista={contenidoListaDisplay} actualizarContenedorDerecho={this.props.actualizarContenedorDerecho} />
+                {this.state.canciones &&
+                    <Lista queryType={this.state.queryType} objetos={this.state.canciones} tipo={listaTipoList} contenidoLista={contenidoListaDisplay} actualizarContenedorDerecho={this.props.actualizarContenedorDerecho} />
+                }
+                {this.state.artistas &&
+                    <Lista queryType={this.state.queryType} objetos={this.state.artistas} contenidoLista={contenidoListaDisplay} actualizarContenedorDerecho={this.props.actualizarContenedorDerecho} />
+                }
+                {this.state.playlists &&
+                    <Lista queryType={this.state.queryType} objetos={this.state.playlists} contenidoLista={contenidoListaDisplay} actualizarContenedorDerecho={this.props.actualizarContenedorDerecho} />
+                }
+                
             </div>
 
         );

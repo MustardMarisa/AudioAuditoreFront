@@ -29,7 +29,7 @@ class MainWindow extends Component {
                 }                
 
                 {this.state.authToken &&
-                    <Dashboard />
+                    <Dashboard authToken={this.state.authToken}/>
                 }  
 
             </div>

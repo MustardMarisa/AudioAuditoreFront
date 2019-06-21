@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Ratings from 'react-ratings-declarative';
-import { contenedorCancion, contenedorArtista, contenedorPlaylist } from "../functions/config";
+import { contenedorCancion, contenedorArtista, contenedorPlaylist,
+        queryCancion, queryArtista, queryPlaylist } from "../functions/config";
 
 class DisplayInfo extends Component {
 
@@ -16,32 +17,54 @@ class DisplayInfo extends Component {
         this.props.actualizarContenedorDerecho(contenedorPlaylist);
     }
 
+    construirCancion = () => {
+        return (
+            <div className="row no-gutters">
+                <div className="col-md-5 d-inline-flex">
+                    <img src={this.props.objeto.album.images[0].url} className="card-img" alt="" />
+                </div>
+                <div className="col-md-7">
+                    <div className="card-body">
+                        <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>{this.props.objeto.name}</button>
+                        <button type="button" className="btn btn-link" onClick={this.mostrarArtista}>{this.props.objeto.artists[0].name}</button>
+                        <Ratings
+                            rating={2}
+                            widgetRatedColors="purple"
+                        >
+                            <Ratings.Widget widgetDimension="15px" />
+                            <Ratings.Widget widgetDimension="15px" />
+                            <Ratings.Widget widgetDimension="15px" />
+                            <Ratings.Widget widgetDimension="15px" />
+                            <Ratings.Widget widgetDimension="15px" />
+                        </Ratings>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    construirArtista = () => {
+
+    }
+
+    construirPlaylist = () => {
+
+    }
+
     render = () => {
         return (
+            
             <div className="container">
                 <div className="card">
-                    <div className="row no-gutters">
-                        <div className="col-md-5 d-inline-flex">
-                            <img src="https://i.scdn.co/image/a921902562e5ebd1488143a3929f2a11094db775" className="card-img" alt="" />
-                        </div>
-                        <div className="col-md-7">
-                            <div className="card-body">
-                                <button type="button" className="btn btn-link" onClick={this.mostrarCancion}>Cancion</button>
-                                <button type="button" className="btn btn-link" onClick={this.mostrarArtista}>Artista</button>
-                                <button type="button" className="btn btn-link" onClick={this.mostrarPlaylist}>Playlist</button>
-                                <Ratings
-                                    rating={2}
-                                    widgetRatedColors="purple"
-                                >
-                                    <Ratings.Widget widgetDimension="15px" />
-                                    <Ratings.Widget widgetDimension="15px" />
-                                    <Ratings.Widget widgetDimension="15px" />
-                                    <Ratings.Widget widgetDimension="15px" />
-                                    <Ratings.Widget widgetDimension="15px" />
-                                </Ratings>
-                            </div>
-                        </div>
-                    </div>
+                {this.props.queryType===queryCancion &&
+                    this.construirCancion()
+                }
+                {this.props.queryType===queryArtista &&
+                    this.construirArtista()
+                }
+                {this.props.queryType===queryPlaylist &&
+                    this.construirPlaylist()
+                }
                 </div>
             </div>
         );
