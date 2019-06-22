@@ -23,11 +23,11 @@ class CajaComentario extends Component {
     }
 
     componentDidMount() {
-        alert(this.state.comentario);
+        /*alert(this.state.comentario);
         alert(this.state.estrellas);
         alert(this.props.idSpotify);
         alert(this.props.user_display_name);
-        alert(this.props.user_spotify_id);
+        alert(this.props.user_spotify_id);*/
         this.setState({
             idSpotify: this.props.idSpotify,
             user_display_name: this.props.user_display_name,
@@ -49,11 +49,11 @@ class CajaComentario extends Component {
             })
     }
     auditar = () => {
-        alert(this.state.comentario);
+        /*alert(this.state.comentario);
         alert(this.state.estrellas);
         alert(this.state.idSpotify);
         alert(this.state.user_display_name);
-        alert(this.state.user_spotify_id);
+        alert(this.state.user_spotify_id);*/
         axios.post(`http://localhost:3777/api/comentarios/`, {
             comentario: this.state.comentario,
             estrellas: this.state.estrellas,
